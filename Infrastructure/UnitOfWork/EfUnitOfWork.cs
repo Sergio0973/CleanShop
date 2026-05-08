@@ -1,6 +1,8 @@
 using System;
 using Application.Abstractions;
 using Infrastructure.Context;
+using Infrastructure.Products;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.UnitOfWork;
 
@@ -8,20 +10,19 @@ namespace Infrastructure.UnitOfWork;
 public class EfUnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _contextdb;
-
-    public IProduct Products => throw new NotImplementedException();
+    private IProduct? _product;
 
     public EfUnitOfWork(AppDbContext db)
     {
         _contextdb = db;
     }
 
-    public Task<int> SaveChangesAsync(CancellationToken ct = default) => _contextdb.SaveChangesAsync(ct);
+    public Task<int> SaveChangesAsync(CancellationToken ct = default)
+        => _contextdb.SaveChangesAsync(ct);
 
-    public async Task ExcuteInTransactionAsync(Func<CancellationToken, Task> operation, CancellationToken ct = default)
+    public async Task ExecuteInTransactionAsync(Func<CancellationToken, Task> operation, CancellationToken ct = default)
     {
         await using var tx = await _contextdb.Database.BeginTransactionAsync(ct);
-
         try
         {
             await operation(ct);
@@ -35,4 +36,15 @@ public class EfUnitOfWork : IUnitOfWork
         }
     }
 
+    public IProduct Products
+    {
+        get
+        {
+            if (_product == null)
+            {
+                _product = new ProductRepository(_contextdb);
+            }
+            return _product;
+        }
+    }
 }

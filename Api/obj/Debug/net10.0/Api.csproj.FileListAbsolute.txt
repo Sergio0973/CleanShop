@@ -138,3 +138,7 @@ C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\bin\Debug\
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Api\obj\Debug\net10.0\Api.sourcelink.json

@@ -13,3 +13,4 @@ C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Application\ob
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Application\obj\Debug\net10.0\refint\Application.dll
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Application\obj\Debug\net10.0\Application.pdb
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Application\obj\Debug\net10.0\ref\Application.dll
+C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Application\obj\Debug\net10.0\Application.sourcelink.json

@@ -17,3 +17,4 @@ C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Infrastructure
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
 C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\Proyecto Personales\CSharp\netcore-main\netcore-main\CleanShop\Infrastructure\obj\Debug\net10.0\Infrastructure.sourcelink.json
