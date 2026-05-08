@@ -9,6 +9,8 @@ public class EfUnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _contextdb;
 
+    public IProduct Products => throw new NotImplementedException();
+
     public EfUnitOfWork(AppDbContext db)
     {
         _contextdb = db;
