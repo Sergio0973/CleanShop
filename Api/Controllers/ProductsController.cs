@@ -1,11 +1,14 @@
 using Api.Dtos.Products;
 using Application.Abstractions;
+using Application.UseCase.Products;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Api.Controllers;
-
+[EnableRateLimiting("ipLimiter")] // toda la clase usa la política
 public sealed class ProductsController : BaseApiController
 {
     private readonly IUnitOfWork _uow;
@@ -29,6 +32,7 @@ public sealed class ProductsController : BaseApiController
     }
 
     [HttpGet("paged")]
+    [DisableRateLimiting] // este endpoint queda excluido si se desea
     [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetPaged(
         [FromQuery] int page = 1,
@@ -86,7 +90,7 @@ public sealed class ProductsController : BaseApiController
     [ProducesResponseType(typeof(ProductDto), StatusCodes.Status201Created)]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request, CancellationToken ct)
     {
-        var command = _mapper.Map<Application.UseCase.Products.CreateProduct>(request);
+        var command = _mapper.Map<CreateProduct>(request);
         var id = await _sender.Send(command, ct);
         var product = await _uow.Products.GetByIdAsync(id, ct);
         if (product is null)
@@ -98,7 +102,17 @@ public sealed class ProductsController : BaseApiController
         return CreatedAtAction(nameof(GetById), new { id }, result);
     }
 
+    [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductRequest request, CancellationToken ct)
+    {
+        var command = _mapper.Map<UpdateProduct>(request) with { Id = id };
+        await _sender.Send(command, ct);
+        return NoContent();
+    }
+
     [HttpDelete("{id:guid}")]
+    [Authorize(Policy = "OtherOPremium")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(Guid id, CancellationToken ct)

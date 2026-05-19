@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.RateLimiting;
 using System.Threading.Tasks;
-using System.Linq;
-
 
 namespace Api.Extensions
 {
@@ -25,15 +25,13 @@ namespace Api.Extensions
                 options.AddPolicy("ipLimiter", httpContext =>
                 {
                     var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-
-                    return RateLimitPartition.GetFixedWindowLimiter(ip, _ =>
-                        new FixedWindowRateLimiterOptions
-                        {
-                            PermitLimit = 5,
-                            Window = TimeSpan.FromSeconds(10),
-                            QueueLimit = 0,
-                            QueueProcessingOrder = QueueProcessingOrder.OldestFirst
-                        });
+                    return RateLimitPartition.GetFixedWindowLimiter(ip, _ => new FixedWindowRateLimiterOptions
+                    {
+                        PermitLimit = 5,
+                        Window = TimeSpan.FromSeconds(10),
+                        QueueLimit = 0,
+                        QueueProcessingOrder = QueueProcessingOrder.OldestFirst
+                    });
                 });
             });
 
